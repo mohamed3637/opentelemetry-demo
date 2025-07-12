@@ -533,7 +533,7 @@ services:
         - ${IMAGE_NAME}:${IMAGE_VERSION}-recommendation
     deploy:
       resources:
-        limits:
+        limits:                      # customize by mohamed
           memory: 500M               # This is high to enable supporting the recommendationCache feature flag use case
     restart: unless-stopped
     ports:

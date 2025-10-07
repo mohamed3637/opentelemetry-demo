@@ -37,6 +37,11 @@ services:
       - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=accounting
+<<<<<<< HEAD
+=======
+      - DB_CONNECTION_STRING=Host=${POSTGRES_HOST};Username=otelu;Password=otelp;Database=${POSTGRES_DB}
+      - OTEL_DOTNET_AUTO_TRACES_ENTITYFRAMEWORKCORE_INSTRUMENTATION_ENABLED=false
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       otel-collector:
         condition: service_started
@@ -102,6 +107,10 @@ services:
       - FLAGD_PORT
       - VALKEY_ADDR
       - OTEL_EXPORTER_OTLP_ENDPOINT
+<<<<<<< HEAD
+=======
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=cart
       - ASPNETCORE_URLS=http://*:${CART_PORT}
@@ -141,6 +150,10 @@ services:
       - PRODUCT_CATALOG_ADDR
       - SHIPPING_ADDR
       - KAFKA_ADDR
+<<<<<<< HEAD
+=======
+      - GOMEMLIMIT=16MiB
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
       - OTEL_RESOURCE_ATTRIBUTES
@@ -188,7 +201,13 @@ services:
       - CURRENCY_PORT
       - VERSION=${IMAGE_VERSION}
       - OTEL_EXPORTER_OTLP_ENDPOINT
+<<<<<<< HEAD
       - OTEL_RESOURCE_ATTRIBUTES=${OTEL_RESOURCE_ATTRIBUTES},service.name=currency   # The C++ SDK does not support OTEL_SERVICE_NAME
+=======
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=currency
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       otel-collector:
         condition: service_started
@@ -213,7 +232,14 @@ services:
     environment:
       - APP_ENV=production
       - EMAIL_PORT
+<<<<<<< HEAD
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}/v1/traces
+=======
+      - FLAGD_HOST
+      - FLAGD_PORT
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=email
     depends_on:
@@ -281,7 +307,11 @@ services:
       - RECOMMENDATION_ADDR
       - SHIPPING_ADDR
       - OTEL_EXPORTER_OTLP_ENDPOINT
+<<<<<<< HEAD
       - OTEL_RESOURCE_ATTRIBUTES=${OTEL_RESOURCE_ATTRIBUTES}
+=======
+      - OTEL_RESOURCE_ATTRIBUTES
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - ENV_PLATFORM
       - OTEL_SERVICE_NAME=frontend
       - PUBLIC_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
@@ -322,6 +352,11 @@ services:
     build:
       context: ./
       dockerfile: ${FRONTEND_PROXY_DOCKERFILE}
+<<<<<<< HEAD
+=======
+      cache_from:
+        - ${IMAGE_NAME}:${IMAGE_VERSION}-frontend-proxy
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     deploy:
       resources:
         limits:
@@ -329,7 +364,11 @@ services:
     restart: unless-stopped
     ports:
       - "${ENVOY_PORT}:${ENVOY_PORT}"
+<<<<<<< HEAD
       - 10000:10000
+=======
+      - "${ENVOY_ADMIN_PORT}:${ENVOY_ADMIN_PORT}"
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     environment:
       - FRONTEND_PORT
       - FRONTEND_HOST
@@ -337,7 +376,11 @@ services:
       - LOCUST_WEB_PORT
       - GRAFANA_PORT
       - GRAFANA_HOST
+<<<<<<< HEAD
       - JAEGER_PORT
+=======
+      - JAEGER_UI_PORT
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - JAEGER_HOST
       - OTEL_COLLECTOR_HOST
       - IMAGE_PROVIDER_HOST
@@ -347,6 +390,10 @@ services:
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=frontend-proxy
       - ENVOY_PORT
+<<<<<<< HEAD
+=======
+      - ENVOY_ADMIN_PORT
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - FLAGD_HOST
       - FLAGD_PORT
       - FLAGD_UI_HOST
@@ -384,8 +431,13 @@ services:
       - IMAGE_PROVIDER_PORT
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
+<<<<<<< HEAD
       - OTEL_SERVICE_NAME=image-provider
       - OTEL_RESOURCE_ATTRIBUTES
+=======
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=image-provider
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       otel-collector:
         condition: service_started
@@ -422,6 +474,10 @@ services:
       - LOCUST_WEB_HOST=0.0.0.0
       - FLAGD_HOST
       - FLAGD_PORT
+<<<<<<< HEAD
+=======
+      - FLAGD_OFREP_PORT
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       frontend:
         condition: service_started
@@ -481,6 +537,10 @@ services:
       - PRODUCT_CATALOG_RELOAD_INTERVAL
       - FLAGD_HOST
       - FLAGD_PORT
+<<<<<<< HEAD
+=======
+      - GOMEMLIMIT=16MiB
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
       - OTEL_RESOURCE_ATTRIBUTES
@@ -512,11 +572,20 @@ services:
       - "${QUOTE_PORT}"
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}
+<<<<<<< HEAD
       - OTEL_PHP_AUTOLOAD_ENABLED=true
       - QUOTE_PORT
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=quote
       - OTEL_PHP_INTERNAL_METRICS_ENABLED=true
+=======
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+      - OTEL_PHP_AUTOLOAD_ENABLED=true
+      - QUOTE_PORT
+      - OTEL_PHP_INTERNAL_METRICS_ENABLED=true
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=quote
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       otel-collector:
         condition: service_started
@@ -577,9 +646,16 @@ services:
     environment:
       - SHIPPING_PORT
       - QUOTE_ADDR
+<<<<<<< HEAD
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=shipping
+=======
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_RESOURCE_ATTRIBUTES
+      - OTEL_SERVICE_NAME=shipping
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     depends_on:
       otel-collector:
         condition: service_started
@@ -600,6 +676,10 @@ services:
     environment:
       - FLAGD_OTEL_COLLECTOR_URI=${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}
       - FLAGD_METRICS_EXPORTER=otel
+<<<<<<< HEAD
+=======
+      - GOMEMLIMIT=60MiB
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=flagd
     command: [
@@ -608,7 +688,12 @@ services:
       "file:./etc/flagd/demo.flagd.json"
     ]
     ports:
+<<<<<<< HEAD
       - 8013
+=======
+      - "${FLAGD_PORT}"
+      - "${FLAGD_OFREP_PORT}"
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     volumes:
       - ./src/flagd:/etc/flagd
     logging:
@@ -621,16 +706,33 @@ services:
     build:
       context: ./
       dockerfile: ${FLAGD_UI_DOCKERFILE}
+<<<<<<< HEAD
     deploy:
       resources:
         limits:
           memory: 75M
     restart: unless-stopped
     environment:
+=======
+      cache_from:
+        - ${IMAGE_NAME}:${IMAGE_VERSION}-flagd-ui
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    restart: always
+    environment:
+      - FLAGD_UI_PORT
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}
       - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
       - OTEL_RESOURCE_ATTRIBUTES
       - OTEL_SERVICE_NAME=flagd-ui
+<<<<<<< HEAD
+=======
+      - SECRET_KEY_BASE=yYrECL4qbNwleYInGJYvVnSkwJuSQJ4ijPTx5tirGUXrbznFIBFVJdPl5t6O9ASw
+      - PHX_HOST=localhost
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     ports:
       - "${FLAGD_UI_PORT}"
     depends_on:
@@ -643,7 +745,11 @@ services:
 
   # Kafka used by Checkout, Accounting, and Fraud Detection services
   kafka:
+<<<<<<< HEAD
     image: ghcr.io/open-telemetry/demo:1.12.0-kafka
+=======
+    image: ${IMAGE_NAME}:${DEMO_VERSION}-kafka
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     container_name: kafka
     build:
       context: ./
@@ -658,7 +764,13 @@ services:
           memory: 620M
     restart: unless-stopped
     environment:
+<<<<<<< HEAD
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+=======
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_HOST}:9092
+      - KAFKA_LISTENERS=PLAINTEXT://${KAFKA_HOST}:9092,CONTROLLER://${KAFKA_HOST}:9093
+      - KAFKA_CONTROLLER_QUORUM_VOTERS=1@${KAFKA_HOST}:9093
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}
       - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
       - OTEL_RESOURCE_ATTRIBUTES
@@ -674,6 +786,31 @@ services:
       retries: 10
     logging: *logging
 
+<<<<<<< HEAD
+=======
+  # Postgresql used by Accounting service
+  postgresql:
+    image: ${IMAGE_NAME}:${DEMO_VERSION}-postgresql
+    container_name: postgresql
+    build:
+      context: ./
+      dockerfile: ${POSTGRES_DOCKERFILE}
+      cache_from:
+        - ${IMAGE_NAME}:${IMAGE_VERSION}-postgresql
+    deploy:
+      resources:
+        limits:
+          memory: 80M
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    logging: *logging
+
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
   # Valkey used by Cart service
   valkey-cart:
     image: ${VALKEY_IMAGE}
@@ -697,21 +834,39 @@ services:
     image: ${JAEGERTRACING_IMAGE}
     container_name: jaeger
     command:
+<<<<<<< HEAD
       - "--memory.max-traces=25000"
       - "--query.base-path=/jaeger/ui"
       - "--prometheus.server-url=http://${PROMETHEUS_ADDR}"
       - "--prometheus.query.normalize-calls=true"
       - "--prometheus.query.normalize-duration=true"
+=======
+      - "--config=file:/etc/jaeger/config.yml"
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     deploy:
       resources:
         limits:
           memory: 1200M
     restart: unless-stopped
     ports:
+<<<<<<< HEAD
       - "${JAEGER_PORT}"         # Jaeger UI
       - "${OTEL_COLLECTOR_PORT_GRPC}"
     environment:
       - METRICS_STORAGE_TYPE=prometheus
+=======
+      - "${JAEGER_UI_PORT}"
+      - "${JAEGER_GRPC_PORT}"
+    environment:
+      - JAEGER_HOST
+      - JAEGER_GRPC_PORT
+      - PROMETHEUS_ADDR
+      - OTEL_COLLECTOR_HOST
+      - OTEL_COLLECTOR_PORT_HTTP
+      - MEMORY_MAX_TRACES=25000
+    volumes:
+      - ./src/jaeger/config.yml:/etc/jaeger/config.yml
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     logging: *logging
 
   # Grafana
@@ -758,11 +913,24 @@ services:
         condition: service_healthy
     logging: *logging
     environment:
+<<<<<<< HEAD
       - ENVOY_PORT
+=======
+      - FRONTEND_PROXY_ADDR
+      - IMAGE_PROVIDER_HOST
+      - IMAGE_PROVIDER_PORT
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - HOST_FILESYSTEM
       - OTEL_COLLECTOR_HOST
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
+<<<<<<< HEAD
+=======
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_PASSWORD
+      - GOMEMLIMIT=160MiB
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
 
   # Prometheus
   prometheus:
@@ -791,19 +959,36 @@ services:
 
   # OpenSearch
   opensearch:
+<<<<<<< HEAD
     image: ${OPENSEARCH_IMAGE}
     container_name: opensearch
     deploy:
       resources:
         limits:
           memory: 1.1G
+=======
+    container_name: opensearch
+    build:
+      context: ./
+      dockerfile: ${OPENSEARCH_DOCKERFILE}
+      cache_from:
+        - ${IMAGE_NAME}:${IMAGE_VERSION}-opensearch
+    deploy:
+      resources:
+        limits:
+          memory: 800M
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
     restart: unless-stopped
     environment:
       - cluster.name=demo-cluster
       - node.name=demo-node
       - bootstrap.memory_lock=true
       - discovery.type=single-node
+<<<<<<< HEAD
       - OPENSEARCH_JAVA_OPTS=-Xms300m -Xmx300m
+=======
+      - OPENSEARCH_JAVA_OPTS=-Xms400m -Xmx400m
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       - DISABLE_INSTALL_DEMO_CONFIG=true
       - DISABLE_SECURITY_PLUGIN=true
       # Workaround on OSX for https://bugs.openjdk.org/browse/JDK-8345296
@@ -821,6 +1006,10 @@ services:
       test: curl -s http://localhost:9200/_cluster/health | grep -E '"status":"(green|yellow)"'
       start_period: 10s
       interval: 5s
+<<<<<<< HEAD
       timeout: 30s
+=======
+      timeout: 10s
+>>>>>>> e1e5b36e540d2f7e2a553b24e6e61f84c9680d5b
       retries: 10
     logging: *logging
